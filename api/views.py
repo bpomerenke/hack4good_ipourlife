@@ -57,7 +57,7 @@ def loginUser(request):
         user = authenticate(request, username=data["username"], password=data["password"])
         if user is not None:
             login(request, user)
-            return HttpResponse(status=200)
+            return HttpResponse(serializers.serialize("json", [user.person,]), status=200)
         else:
             return HttpResponse(status=401)
     except:
