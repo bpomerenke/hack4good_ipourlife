@@ -7,11 +7,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+  <button ion-button clear item-end icon-start large><ion-icon name="add-circle"></ion-icon></button>    
+  <ion-list *ngFor="let contact of getContacts()">
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-thumbnail item-start>
+        <img src="{{contact.img}}">
+      </ion-thumbnail>
+      <h2>{{contact.name}}</h2>
+      <p>{{contact.number}}</p>
+      <button ion-button clear item-end icon-start color="danger" large><ion-icon name="call"></ion-icon>Call</button>
     </ion-item>
   </ion-list>
 </ion-content>
