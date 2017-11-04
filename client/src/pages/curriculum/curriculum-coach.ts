@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
  */
 
 @Component({
-  selector: 'page-curriculum-coach',
-  templateUrl: 'curriculum-coach.html',
+    selector: 'page-curriculum-coach',
+    templateUrl: 'curriculum-coach.html',
 })
 
 export class CurriculumCoachPage {

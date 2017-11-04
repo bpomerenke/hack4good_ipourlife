@@ -11,32 +11,19 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list *ngIf="currentAssignment == null">
-    <div *ngFor="let module of getModules()">
-      <button ion-item (click)="toggleSelection(module)">
-      {{module.name}}
-      <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
-    </button>
-      <ion-list inset *ngIf="module.selected">
-        <button [ngClass]="{'completed': assignment.isCompleted}"  ion-item *ngFor="let assignment of module.assignments" (click)="selectAssignment(assignment)">
-        {{assignment.name}}
-      </button>
-      </ion-list>
-    </div>
-  </ion-list>
-  <div *ngIf="currentAssignment != null">
-    <button ion-item (click)="selectAssignment(null)">&lt; Back to modules</button>
-    Current assignment: {{currentAssignment.name}}
+  <div padding>
+    <ion-segment [(ngModel)]="view">
+      <ion-segment-button value="Youth">
+        Youth
+      </ion-segment-button>
+      <ion-segment-button value="Coach">
+        Coach
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="view">
+    <page-curriculum-youth *ngSwitchCase="'Youth'"></page-curriculum-youth>
+    <page-curriculum-coach *ngSwitchCase="'Coach'"></page-curriculum-coach>
   </div>
 </ion-content>
-
-<style>
-  .complete-count {
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-  }
-  .completed {
-    background-color: #00ff00
-  }
-</style>

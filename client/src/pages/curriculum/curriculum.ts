@@ -17,5 +17,5 @@ import { IonicPage } from 'ionic-angular';
 export class CurriculumPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CurriculumPage');
-  }  
+  }
 }

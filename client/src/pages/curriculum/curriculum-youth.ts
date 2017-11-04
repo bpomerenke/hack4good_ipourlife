@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
  */
 
 @Component({
-  selector: 'page-curriculum-youth',
-  templateUrl: 'curriculum-youth.html',
+    selector: 'page-curriculum-youth',
+    templateUrl: 'curriculum-youth.html',
 })
 
 export class CurriculumYouthPage {
@@ -25,11 +25,11 @@ export class CurriculumYouthPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad CurriculumPage');
-    }  
+    }
 
-    getModules(): any[] { 
-        return this.modules;    
-    }  
+    getModules(): any[] {
+        return this.modules;
+    }
 
     toggleSelection(item: Module): void {
         item.selected = !item.selected;
@@ -43,16 +43,16 @@ export class CurriculumYouthPage {
 }
 
 export class Assignment {
-  name: string
-  isCompleted: boolean
-  url: string
+    name: string
+    isCompleted: boolean
+    url: string
 }
 
 export class Module {
-  public selected: boolean = false;
-  constructor(public id: number, public name: string, public assignments: Assignment[]) { }
+    public selected: boolean = false;
+    constructor(public id: number, public name: string, public assignments: Assignment[]) { }
 
-  numberComplete(): number {
-    return this.assignments.filter(x => x.isCompleted).length;
-  }
+    numberComplete(): number {
+        return this.assignments.filter(x => x.isCompleted).length;
+    }
 }
