@@ -10,6 +10,7 @@ import { ResourcesPage} from '../pages/resources/resources';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WishlistPage } from '../pages/wishlist/wishlist';
 import { CurriculumPage } from '../pages/curriculum/curriculum';
+import { WishlistYouthPage } from '../pages/wishlist/wishlist-youth'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     WishlistPage,
     CurriculumPage,
+    WishlistPage,
+    WishlistYouthPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ResourcesPage,
     TabsPage,
     WishlistPage,
-    CurriculumPage
+    CurriculumPage,
+    WishlistYouthPage
   ],
   providers: [
     StatusBar,
