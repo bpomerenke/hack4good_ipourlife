@@ -21,6 +21,7 @@ import { CurriculumCoachPage } from '../pages/curriculum/curriculum-coach';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserProvider } from '../providers/user/user';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { UserProvider } from '../providers/user/user';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    Camera
   ]
 })
 export class AppModule {}
