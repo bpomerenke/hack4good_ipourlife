@@ -6,23 +6,14 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Curriculum</ion-title>
+    <ion-title>
+      Curriculum ({{getUserType()}})
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div padding>
-    <ion-segment [(ngModel)]="view">
-      <ion-segment-button value="Youth">
-        Youth
-      </ion-segment-button>
-      <ion-segment-button value="Coach">
-        Coach
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-  <div [ngSwitch]="view">
+  <div [ngSwitch]="getUserType()">
     <page-curriculum-youth *ngSwitchCase="'Youth'"></page-curriculum-youth>
     <page-curriculum-coach *ngSwitchCase="'Coach'"></page-curriculum-coach>
   </div>
