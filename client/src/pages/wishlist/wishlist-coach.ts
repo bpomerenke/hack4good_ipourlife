@@ -6,86 +6,53 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'wishlist-coach.html'
 })
 export class WishlistCoachPage {
-  public suppliesOptions: any[] = [
+
+  public wesleyRequests: any[] = [
     {
-      name: 'Notebooks'      
+      item: 'Backpack'      
     },
     {
-      name: 'Pencils'      
+      item: 'Pencils'      
     },
     {
-      name: 'Backpack'      
-    },
-    {
-      name: 'Headphones'      
+      item: 'Bus pass'      
     }
   ]
 
-  public groceriesOptions: any[] = [
+  public michelleRequests: any[] = [
     {
-      name: 'Cereal'      
+      item: 'Headphones'      
     },
     {
-      name: 'Eggs'      
-    },
-    {
-      name: 'Bread'      
-    },
-    {
-      name: 'Deli meat'      
+      item: 'Jacket'      
     }
   ]
 
-  public clothingOptions: any[] = [
+  public clintRequests: any[] = [
     {
-      name: 'Jacket'      
-    },
-    {
-      name: 'Dress pants'      
-    },
-    {
-      name: 'Sneakers'      
-    },
-    {
-      name: 'Hat'      
+      item: 'Phone'      
     }
   ]
 
-  public miscOptions: any[] = [
+  public youths: any[] = [
     {
-      name: 'Bus pass'      
+      name: 'Wesley Robertson',
+      requests: this.wesleyRequests
     },
     {
-      name: 'Phone'      
+      name: 'Michelle Crawford',
+      requests: this.michelleRequests
     },
     {
-      name: 'Nail polish'      
-    }
-  ]
-
-  public wishlistItems: any[] = [
-    {
-      name: 'Supplies',
-      options: this.suppliesOptions
-    },
-    {
-      name: 'Groceries',
-      options: this.groceriesOptions
-    },
-    {
-      name: 'Clothing',
-      options: this.clothingOptions
-    },
-    {
-      name: 'Misc',
-      options: this.miscOptions
+      name: 'Clint Hooper',
+      requests: this.clintRequests
     }
   ]
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  getWishlistItems():any[]{
-    return this.wishlistItems;
+  getYouthRequests():any[]{
+    return this.youths;
   }
 }
