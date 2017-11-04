@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-wishlist-coach',
@@ -48,9 +47,6 @@ export class WishlistCoachPage {
       requests: this.clintRequests
     }
   ]
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
 
   getYouthRequests():any[]{
     return this.youths;
