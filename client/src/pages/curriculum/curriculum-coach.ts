@@ -13,7 +13,15 @@ import { Component } from '@angular/core';
 })
 
 export class CurriculumCoachPage {
+    private youths:any[] = [
+        {name: "Joe Bieber"}
+    ];
+
     ionViewDidLoad() {
         console.log('ionViewDidLoad CurriculumPage');
+    }
+
+    getYouths(): any[]{
+        return this.youths;
     }
 }
