@@ -15,11 +15,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CurriculumPage {
 
+  private assignments : any[] = [
+    {id: 1, name: "First Assignment", isCompleted: false},
+    {id: 2, name: "Second Assignment", isCompleted: true},
+    {id: 3, name: "Third Assignment", isCompleted: false}
+  ];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CurriculumPage');
+  }
+
+  getAssignments(): any[] {
+    return this.assignments;
   }
 
 }
