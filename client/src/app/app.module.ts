@@ -8,6 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { EventsPage } from '../pages/events/events';
 import { ResourcesPage} from '../pages/resources/resources';
 import { TabsPage } from '../pages/tabs/tabs';
+import { CurriculumPage } from '../pages/curriculum/curriculum'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     EventsPage,
     ResourcesPage,
+    CurriculumPage,
     TabsPage
   ],
   imports: [
@@ -32,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     EventsPage,
     ResourcesPage,
+    CurriculumPage,
     TabsPage
   ],
   providers: [
