@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content>
+  <h4 text-left padding>
+    Please select the items you would like to request.
+  </h4>
   <ion-list>
     <ion-item *ngFor="let item of getWishlistItems()">
       <ion-label>{{item.name}}</ion-label>
