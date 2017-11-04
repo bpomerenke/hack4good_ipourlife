@@ -27,11 +27,17 @@ class PersonType(ChoiceEnum):
     YOUTH = 1
     COACH = 2
 
+class Contact(models.Model):
+    objects = models.Manager()
+    number = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
+
 class Person(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     person_type = models.CharField(max_length=1, choices=PersonType.choices(), default='1', null=False)
     phone_number = models.CharField(max_length=64, null=True)
+    contacts = models.ManyToManyField(Contact)
 
 def generate_token_id():
     myrandom = uuid.uuid4()
