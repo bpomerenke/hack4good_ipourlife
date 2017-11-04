@@ -110,6 +110,14 @@ def contacts(request):
         contact = Contact(number=data["number"], name=data["name"])
         contact.save()
         request.user.person.contacts.add(contact)
+
+    if request.method == "PUT":
+        body_unicode = request.body.decode('utf-8')
+        data = json.loads(body_unicode)
+        contact = Contact.objects.get(pk=data['pk'])
+        contact.number = data["number"]
+        contact.name = data["name"]
+        contact.save()
             
     data = serializers.serialize("json", Contact.objects.filter(person=person))
     return HttpResponse(data)
