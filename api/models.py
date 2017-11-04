@@ -48,9 +48,14 @@ class AccountToken(models.Model):
     phone_number = models.CharField(max_length=64)
 
     def createUser(self, username, password, email=None):
+        if (datetime.now() - self.generated_at.replace(tzinfo=None)).total_seconds() > 15 * 60 or self.used:
+            raise RuntimeError("Token is expired")
+
         newUser = User.objects.create_user(username, email, password, first_name=self.first_name, last_name=self.last_name)
         newUser.person.phone_number = self.phone_number
-        newUser.person.save()
+        newUser.person.save()        
+        self.used = True
+        self.save()
         return newUser
 
 @receiver(post_save, sender=User)

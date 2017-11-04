@@ -2,7 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from api.models import Person, generate_token_id, AccountToken
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
 import json
+import logging
 
 def index(request):
     newToken = AccountToken.objects.create(first_name="Bob", last_name="Dude", phone_number="417-355-1079")
@@ -38,4 +40,5 @@ def createYouth(request):
         user = token.createUser(data["username"], data["password"], data["email"])
         return HttpResponse(status=201)
     except:
-        return HttpResponse(status=400)    
+        logging.exception('')
+        return HttpResponse(status=400)
