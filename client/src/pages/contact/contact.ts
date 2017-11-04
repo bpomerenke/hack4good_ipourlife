@@ -32,7 +32,12 @@ export class ContactPage {
   constructor(public navCtrl: NavController) {
 
   }
+
   getContacts():any[]{
     return this.contacts;
+  }
+
+  call(contact: any) {
+     window.location.href = `tel:${contact.number}`;
   }
 }

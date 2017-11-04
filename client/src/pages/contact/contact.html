@@ -15,7 +15,7 @@
       </ion-thumbnail>
       <h2>{{contact.name}}</h2>
       <p>{{contact.number}}</p>
-      <button ion-button clear item-end icon-start large><ion-icon name="call"></ion-icon>Call</button>
+      <button ion-button clear item-end icon-start large (click)="call(contact)"><ion-icon name="call"></ion-icon>Call</button>
     </ion-item>
   </ion-list>
 </ion-content>
