@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from api.models import Person, generate_token_id, AccountToken, Wish, User
+from api.models import Person, generate_token_id, AccountToken, Wish, User, Contact
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -95,3 +95,21 @@ def wishes(request, username=None):
 
         data = serializers.serialize("json", [newWish,])
         return HttpResponse(data, status=201)
+
+@csrf_exempt
+def contacts(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+    
+    person = request.user.person
+
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        data = json.loads(body_unicode)
+
+        contact = Contact(number=data["number"], name=data["name"])
+        contact.save()
+        request.user.person.contacts.add(contact)
+            
+    data = serializers.serialize("json", Contact.objects.filter(person=person))
+    return HttpResponse(data)
