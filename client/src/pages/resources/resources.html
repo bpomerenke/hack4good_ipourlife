@@ -1,0 +1,43 @@
+
+<ion-header>
+<ion-navbar>
+  <ion-title>Resources</ion-title>
+</ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+<ion-card *ngFor="let resource of getResources()">
+  
+    <img class="resource-card" src="{{resource.img}}"/>
+  
+    <ion-card-content>
+      <ion-card-title>
+         {{resource.name}}
+      </ion-card-title>
+      <p>
+        {{resource.description}}
+      </p>
+    </ion-card-content>
+  
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='call'></ion-icon>
+          Call
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='mail'></ion-icon>
+          Email
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-start>
+          <ion-icon name='pin'></ion-icon>
+          Location
+        </button>
+      </ion-col>
+    </ion-row>
+  
+  </ion-card>
