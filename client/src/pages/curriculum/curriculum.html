@@ -13,7 +13,7 @@
 <ion-content padding>
   <ion-list *ngIf="currentAssignment == null">
     <div *ngFor="let module of getModules()">
-      <button ion-item (click)="toggleSelection(module)">
+      <button ion-item (click)="toggleSelection(module)" [ngClass]="{'completed': module.isCompleted()}">
       {{module.name}}
       <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
     </button>
@@ -35,5 +35,8 @@
     display: inline-block;
     position: absolute;
     right: 0px;
+  }
+  .completed {
+    background-color: #00ff00
   }
 </style>

@@ -60,4 +60,9 @@ export class Module {
   numberComplete(): number {
     return this.assignments.filter(x => x.isCompleted).length;
   }
+
+  isCompleted(): boolean {
+    var completedAssignments = this.assignments.filter(x => x.isCompleted);
+    return completedAssignments.length === this.assignments.length;
+  }
 }
