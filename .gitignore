@@ -3,3 +3,6 @@ venv
 staticfiles
 Design/.DS_Store
 .env
+.DS_Store
+client/package-lock.json
+Client/package.json
