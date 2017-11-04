@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 import inspect
 from enum import Enum
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+import uuid
+import base64
+from datetime import datetime
 
 # Create your models here.
 
@@ -27,6 +30,19 @@ class Person(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     person_type = models.CharField(max_length=1, choices=PersonType.choices(), default='2', null=False)
+
+def generate_token_id():
+    myrandom = uuid.uuid4()
+    b32 = base64.b32encode(myrandom.bytes)
+    return str(b32)[2:6]
+
+class AccountToken(models.Model):
+    objects = models.Manager()
+    generated_at = models.DateTimeField(default=datetime.now, blank=True)
+    token_id = models.CharField(default=generate_token_id, max_length=4)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64)
+    phone_number = models.CharField(max_length=64)
 
 @receiver(post_save, sender=User)
 def create_user_person(sender, instance, created, **kwargs):
