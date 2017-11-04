@@ -30,7 +30,7 @@ class PersonType(ChoiceEnum):
 class Person(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    person_type = models.CharField(max_length=1, choices=PersonType.choices(), default='2', null=False)
+    person_type = models.CharField(max_length=1, choices=PersonType.choices(), default='1', null=False)
     phone_number = models.CharField(max_length=64, null=True)
 
 def generate_token_id():
