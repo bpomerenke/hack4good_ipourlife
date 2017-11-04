@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Wishlist
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <h4 text-left padding>
+    Please select the items you would like to request.
+  </h4>
+  <ion-list>
+    <ion-item *ngFor="let item of getWishlistItems()">
+      <ion-label>{{item.name}}</ion-label>
+      <ion-select multiple="true" submitText="Done" cancelText="Cancel">              
+        <ion-option *ngFor="let option of item.options">{{option.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div text-center>
+    <button ion-button round (click)="logEvent($event)">
+        Submit Request
+    </button>
+  </div>
+</ion-content>
