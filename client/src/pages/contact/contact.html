@@ -7,15 +7,55 @@
 </ion-header>
 
 <ion-content>
-  <button ion-button clear item-end icon-start large color='danger'><ion-icon name="add-circle"></ion-icon></button>    
-  <ion-list>
-    <ion-item *ngFor="let contact of getContacts()">
-      <ion-thumbnail item-start>
-        <img src="{{contact.img}}">
-      </ion-thumbnail>
-      <h2>{{contact.name}}</h2>
-      <p>{{contact.number}}</p>
-      <button ion-button clear item-end icon-start large (click)="call(contact)"><ion-icon name="call"></ion-icon>Call</button>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="!isAddingContact">
+    <div text-right>
+      <button ion-button clear large color='danger' align='right' (click)="add()">
+          <ion-icon class="add-icon" name="add-circle"></ion-icon>
+      </button>
+    </div> 
+    <ion-list>
+      <ion-item *ngFor="let contact of getContacts()">
+        <ion-thumbnail item-start>
+          <img src="{{contact.img}}">
+        </ion-thumbnail>
+        <h2>{{contact.name}}</h2>
+        <p>{{contact.number}}</p>
+        <button ion-button clear item-end icon-start large (click)="call(contact)"><ion-icon name="call"></ion-icon>Call</button>
+      </ion-item>
+    </ion-list>
+  </div>
+<!-- add contact screen-->
+  <div *ngIf="isAddingContact">
+    <div padding>
+      <h3>Please enter the new contact.</h3>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>First Name</ion-label>
+        <ion-input type="text" [(ngModel)]="newContactFirstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Last Name</ion-label>
+        <ion-input type="text" [(ngModel)]="newContactLastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Number</ion-label>
+        <ion-input type="tel" [(ngModel)]="newContactPhone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <div text-center>
+          <button ion-button clear large icon-start (click)="uploadPhoto()">
+              <ion-icon large name='md-photos'></ion-icon>
+              Upload a photo
+            </button>
+        </div>
+      </ion-item>   
+    </ion-list>
+    <div text-center>
+      <button ion-button round (click)="saveContact()">
+          Add Contact
+      </button>
+    </div>
+  </div>
+
 </ion-content>

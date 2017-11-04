@@ -6,6 +6,11 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'contact.html'
 })
 export class ContactPage {
+  isAddingContact: boolean = false;
+  newContactFirstName: string;
+  newContactLastName: string;
+  newContactPhone: number;
+
   public contacts: any[] = [
     {
       name: 'Mark Delaney',
@@ -30,7 +35,6 @@ export class ContactPage {
   ];
 
   constructor(public navCtrl: NavController) {
-
   }
 
   getContacts():any[]{
@@ -39,5 +43,29 @@ export class ContactPage {
 
   call(contact: any) {
      window.location.href = `tel:${contact.number}`;
+  }
+
+  add() {
+    this.isAddingContact = true;
+  }
+
+  saveContact() {
+    // TODO: format phone numbers
+    this.isAddingContact = false;
+    let newContact: Object = {
+      name: this.newContactFirstName + ' ' + this.newContactLastName,
+      number: this.newContactPhone,
+      img: '../assets/imgs/defaultimage.jpg'
+    }
+
+    this.newContactFirstName = null;
+    this.newContactLastName = null;
+    this.newContactPhone = null;
+
+    this.contacts.push(newContact);
+  }
+
+  uploadPhoto() {
+    
   }
 }
