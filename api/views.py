@@ -9,8 +9,21 @@ def index(request):
     return HttpResponse("Hello, world. You're at the api index. " + generate_token_id() + " person exists")
 
 @csrf_exempt 
-def postCheck(request):
+def checkToken(request):
+    body_unicode = request.body.decode('utf-8')
+    data = json.loads(body_unicode)
+    token_id = data['token_id']
+
+    exists = AccountToken.objects.filter(token_id=token_id).exists()
+
+    return HttpResponse(status= (200 if exists else 404))
+
+@csrf_exempt
+def createToken(request):
     body_unicode = request.body.decode('utf-8')
     data = json.loads(body_unicode)
 
-    return HttpResponse("body: %s" % data['name'])
+    token = AccountToken(first_name=data['first_name'], last_name=data['last_name'], phone_number=data['phone_number'])
+    token.save()
+
+    return HttpResponse(json.dumps({'token_id': token.token_id}))

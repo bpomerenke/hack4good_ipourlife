@@ -7,6 +7,7 @@ from django.dispatch import receiver
 import uuid
 import base64
 from datetime import datetime
+from django.contrib.auth.validators import ASCIIUsernameValidator
 
 # Create your models here.
 
@@ -30,6 +31,7 @@ class Person(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     person_type = models.CharField(max_length=1, choices=PersonType.choices(), default='2', null=False)
+    phone_number = models.CharField(max_length=64, null=True)
 
 def generate_token_id():
     myrandom = uuid.uuid4()
@@ -39,10 +41,17 @@ def generate_token_id():
 class AccountToken(models.Model):
     objects = models.Manager()
     generated_at = models.DateTimeField(default=datetime.now, blank=True)
+    used = models.BooleanField(default=False)
     token_id = models.CharField(default=generate_token_id, max_length=4)
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     phone_number = models.CharField(max_length=64)
+
+    def createUser(self, username, password, email=None):
+        newUser = User.objects.create_user(username, email, password, first_name=self.first_name, last_name=self.last_name)
+        newUser.person.phone_number = self.phone_number
+        newUser.person.save()
+        return newUser
 
 @receiver(post_save, sender=User)
 def create_user_person(sender, instance, created, **kwargs):
