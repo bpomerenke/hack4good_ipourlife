@@ -9,16 +9,17 @@
 <ion-content>
   <div padding>
       <ion-segment [(ngModel)]="view">
-        <ion-segment-button>
+        <ion-segment-button value="Youth">
           Youth
         </ion-segment-button>
-        <ion-segment-button>
+        <ion-segment-button value="Coach">
           Coach
         </ion-segment-button>
       </ion-segment>
     </div>
 
     <div [ngSwitch]="view">
-      <page-wishlist-youth *ngSwitchCase="Youth"></page-wishlist-youth>
+      <page-wishlist-youth *ngSwitchCase="'Youth'"></page-wishlist-youth>
+      <page-wishlist-coach *ngSwitchCase="'Coach'"></page-wishlist-coach>
     </div>
 </ion-content>
