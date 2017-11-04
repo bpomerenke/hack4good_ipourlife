@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage } from 'ionic-angular';
+import { UserProvider } from '../../providers/user/user'
 /**
  * Generated class for the CurriculumPage page.
  *
@@ -15,49 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 
 export class CurriculumPage {
-  private assignments1: any[] = [{ name: "Activity 1", isCompleted: false }, { name: "Activity 2", isCompleted: true }];
-  private assignments2: any[] = [{ name: "Worksheet 1", isCompleted: true }, { name: "Activity 3", isCompleted: true }];
-  private assignments3: any[] = [{ name: "Worksheet 2", isCompleted: false }];
+  constructor(private userProvider: UserProvider){
 
-  private modules: Module[] = [
-    new Module(1, "Emotional Development", this.assignments1),
-    new Module(2, "Identity Development", this.assignments2),
-    new Module(3, "Employment Development", this.assignments3)
-  ];
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  getUserType():string {
+    return this.userProvider.currentUser.type;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CurriculumPage');
-  }
-
-  getModules(): any[] { 
-    return this.modules;    
-  }
-
-  toggleSelection(item: Module): void {
-    item.selected = !item.selected;
-  }
-
-  selectAssignment(item: Assignment): void {
-    this.currentAssignment = item;
-  }
-
-  private currentAssignment: Assignment = null
-}
-
-export class Assignment {
-  name: string
-  isCompleted: boolean
-  url: string
-}
-
-export class Module {
-  public selected: boolean = false;
-  constructor(public id: number, public name: string, public assignments: Assignment[]) { }
-
-  numberComplete(): number {
-    return this.assignments.filter(x => x.isCompleted).length;
   }
 }
