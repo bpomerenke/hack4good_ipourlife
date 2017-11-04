@@ -9,6 +9,7 @@ import { EventsPage } from '../pages/events/events';
 import { ResourcesPage} from '../pages/resources/resources';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CurriculumPage } from '../pages/curriculum/curriculum'
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,6 +41,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    DocumentViewer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

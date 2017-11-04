@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 
 /**
  * Generated class for the CurriculumPage page.
@@ -25,8 +26,7 @@ export class CurriculumPage {
     new Module(3, "Employment Development", this.assignments3)
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(private document: DocumentViewer) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CurriculumPage');
@@ -42,9 +42,20 @@ export class CurriculumPage {
 
   selectAssignment(item: Assignment): void {
     this.currentAssignment = item;
+    if(!!this.currentAssignment){
+      this.viewDocument();
+    }
   }
 
   private currentAssignment: Assignment = null
+  viewDocument(): void {
+    console.log("Viewing assignment PDF");
+    const options: DocumentViewerOptions = {
+      title: 'My PDF'
+    }
+     
+    this.document.viewDocument('https://www.uscis.gov/system/files_force/files/form/i-9-paper-version.pdf', 'application/pdf', options)
+  }  
 }
 
 export class Assignment {
