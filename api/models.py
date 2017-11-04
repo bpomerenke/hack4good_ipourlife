@@ -26,9 +26,6 @@ class PersonType(ChoiceEnum):
     YOUTH = 1
     COACH = 2
 
-class FooObject():
-    first_name = models.CharField(max_length=256)
-
 class Person(models.Model):
     objects = models.Manager()
     user = models.OneToOneField(User, on_delete=models.CASCADE)

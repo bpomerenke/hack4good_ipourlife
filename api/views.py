@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from api.models import Person, generate_token_id, AccountToken, FooObject
+from api.models import Person, generate_token_id, AccountToken
 from django.views.decorators.csrf import csrf_exempt
 import json
 
