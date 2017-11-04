@@ -38,4 +38,4 @@ def createYouth(request):
         user = token.createUser(data["username"], data["password"], data["email"])
         return HttpResponse(status=201)
     except:
-        return HttpResponse(status=404)    
+        return HttpResponse(status=400)    
