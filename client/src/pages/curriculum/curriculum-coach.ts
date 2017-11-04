@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Assignment } from '../../models/Assignment';
 
 /**
  * Generated class for the CurriculumPage page.
@@ -13,15 +14,21 @@ import { Component } from '@angular/core';
 })
 
 export class CurriculumCoachPage {
-    private youths:any[] = [
-        {name: "Joe Bieber"}
+    private youths:Youth[] = [
+        {name: "Joe Bieber", assignments: []},
+        {name: "Emily Patterson", assignments: []}
     ];
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad CurriculumPage');
     }
 
-    getYouths(): any[]{
+    getYouths(): Youth[]{
         return this.youths;
     }
+}
+
+export class Youth{
+    name: string
+    assignments: Assignment[]
 }

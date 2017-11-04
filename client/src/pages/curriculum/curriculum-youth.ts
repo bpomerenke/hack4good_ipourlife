@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Assignment } from '../../models/Assignment';
 
 /**
  * Generated class for the CurriculumPage page.
@@ -42,11 +43,7 @@ export class CurriculumYouthPage {
     private currentAssignment: Assignment = null
 }
 
-export class Assignment {
-    name: string
-    isCompleted: boolean
-    url: string
-}
+
 
 export class Module {
     public selected: boolean = false;
