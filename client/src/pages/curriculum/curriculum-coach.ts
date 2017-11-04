@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
 
 /**
  * Generated class for the CurriculumPage page.
@@ -8,7 +7,6 @@ import { IonicPage } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-curriculum-coach',
   templateUrl: 'curriculum-coach.html',
