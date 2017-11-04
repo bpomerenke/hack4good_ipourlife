@@ -1,0 +1,40 @@
+<!--
+  Generated template for the EventsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Events</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item-group>
+    <span *ngFor="let month of getEvents()">
+    <ion-item-divider color="light">{{month.name}}</ion-item-divider>
+    <ion-item *ngFor="let event of month.events">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <h2><strong>{{event.name}}</strong></h2>
+            {{event.date}}
+          </ion-col>
+          <ion-col col-1>
+            <button *ngIf="event.favorite" ion-button color="dark" icon-only clear (click)="toggleFavorite(event)">
+              <ion-icon name="star"></ion-icon>
+            </button>
+            <button *ngIf="!event.favorite" ion-button color="dark" icon-only clear (click)="toggleFavorite(event)">
+              <ion-icon name="star-outline"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    </span>
+  </ion-item-group>
+</ion-content>
