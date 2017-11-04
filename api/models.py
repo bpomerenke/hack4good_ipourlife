@@ -58,6 +58,11 @@ class AccountToken(models.Model):
         self.save()
         return newUser
 
+class Wish(models.Model):
+    objects = models.Manager()
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    name = models.CharField(max_length=256)
+
 @receiver(post_save, sender=User)
 def create_user_person(sender, instance, created, **kwargs):
     if created:
