@@ -14,9 +14,12 @@ import { Assignment } from '../../models/Assignment';
 })
 
 export class CurriculumCoachPage {
+    private assignments1: any[] = [{ name: "Activity 1", isCompleted: false }, { name: "Activity 2", isCompleted: true }];
+    private assignments2: any[] = [{ name: "Worksheet 1", isCompleted: true }, { name: "Activity 3", isCompleted: true }];
+
     private youths:Youth[] = [
-        {name: "Joe Bieber", assignments: []},
-        {name: "Emily Patterson", assignments: []}
+        {name: "Joe Bieber", assignments: this.assignments1, selected:false},
+        {name: "Emily Patterson", assignments: this.assignments2, selected:false}
     ];
 
     ionViewDidLoad() {
@@ -26,9 +29,14 @@ export class CurriculumCoachPage {
     getYouths(): Youth[]{
         return this.youths;
     }
+
+    toggleSelection(youth: Youth){
+        youth.selected = !youth.selected;
+    }
 }
 
 export class Youth{
     name: string
+    selected: boolean
     assignments: Assignment[]
 }

@@ -6,6 +6,20 @@
 -->
 <ion-list>
     <div *ngFor="let youth of getYouths()">
-        <button ion-item (click)="toggleSelection(module)">{{youth.name}}</button>
+        <button ion-item (click)="toggleSelection(youth)">
+            {{youth.name}}
+        </button>
+        <ion-list inset *ngIf="youth.selected">
+            <button [ngClass]="{'completed': assignment.isCompleted}" ion-item *ngFor="let assignment of youth.assignments">
+                {{assignment.name}}
+            </button>
+        </ion-list>
     </div>
 </ion-list>
+
+
+<style>
+    .completed {
+        background-color: #00ff00
+    }
+</style>

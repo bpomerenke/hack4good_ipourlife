@@ -8,13 +8,13 @@
 <ion-list *ngIf="currentAssignment == null">
     <div *ngFor="let module of getModules()">
         <button ion-item (click)="toggleSelection(module)">
-      {{module.name}}
-      <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
-    </button>
+            {{module.name}}
+            <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
+        </button>
         <ion-list inset *ngIf="module.selected">
             <button [ngClass]="{'completed': assignment.isCompleted}" ion-item *ngFor="let assignment of module.assignments" (click)="selectAssignment(assignment)">
-        {{assignment.name}}
-      </button>
+                {{assignment.name}}
+            </button>
         </ion-list>
     </div>
 </ion-list>
