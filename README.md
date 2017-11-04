@@ -14,10 +14,11 @@ ipourlife hackathon
   * heroku CLI (https://devcenter.heroku.com/articles/heroku-cli)
   * setup virtual env (first time only)
     * `virtualenv venv`
+    * `./venv/Scripts/activate`
     * `pip install -r requirements.txt`
   * setup Django db / users (first time only)
     * `python manage.py migrate`
-    * `python manage.py createsuperuser
+    * `python manage.py createsuperuser`
     
 ## running client (web)
 * `cd client`
