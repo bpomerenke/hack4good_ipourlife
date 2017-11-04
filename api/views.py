@@ -27,3 +27,15 @@ def createToken(request):
     token.save()
 
     return HttpResponse(json.dumps({'token_id': token.token_id}))
+
+@csrf_exempt
+def createYouth(request):
+    body_unicode = request.body.decode('utf-8')
+    data = json.loads(body_unicode)
+
+    try:
+        token = AccountToken.objects.get(token_id=data["token_id"]) # type: AccountToken
+        user = token.createUser(data["username"], data["password"], data["email"])
+        return HttpResponse(status=201)
+    except:
+        return HttpResponse(status=404)    
