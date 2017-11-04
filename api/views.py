@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from api.models import Person, generate_token_id, AccountToken
+from api.models import Person, generate_token_id, AccountToken, Wish, User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
 import logging
+from django.core import serializers
 
 def index(request):
     newToken = AccountToken.objects.create(first_name="Bob", last_name="Dude", phone_number="417-355-1079")
@@ -67,3 +68,30 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return HttpResponse(status=200)
+
+@csrf_exempt
+def wishes(request, username=None):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+
+    if request.method == "GET":
+        if username == None:
+            username = request.user.username
+            
+        person = User.objects.get(username=username).person
+        wishes = Wish.objects.filter(person=person)
+        
+        data = serializers.serialize("json", wishes)
+        return HttpResponse(data)
+
+    elif request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        data = json.loads(body_unicode)
+        user = request.user
+
+        person = user.person
+        newWish = Wish(person=person, name=data["name"])
+        newWish.save()
+
+        data = serializers.serialize("json", [newWish,])
+        return HttpResponse(data, status=201)
