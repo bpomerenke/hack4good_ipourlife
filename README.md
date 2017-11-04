@@ -30,6 +30,7 @@ ipourlife hackathon
 
 ## running server (locally)
 * `./venv/Scripts/activate` (. venv/bin/activate)
+* `python manage.py migrate`
 * `python manage.py runserver`
 * Navigate to local server http://localhost:8000
 * For admin, navigate to http://localhost:8000/admin (and login with superuser)
