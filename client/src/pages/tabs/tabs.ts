@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
+import { EventsPage } from '../events/events';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  eventsRoot = AboutPage;
+  eventsRoot = EventsPage;
   resourcesRoot = AboutPage;
   contactsRoot = ContactPage;
   curriculumRoot = AboutPage;
