@@ -70,15 +70,28 @@ def logoutUser(request):
     return HttpResponse(status=200)
 
 @csrf_exempt
-def getWishes(request, username=None):
+def wishes(request, username=None):
     if not request.user.is_authenticated:
         return HttpResponse(status=401)
 
-    if username == None:
-        username = request.user.username
+    if request.method == "GET":
+        if username == None:
+            username = request.user.username
+            
+        person = User.objects.get(username=username).person
+        wishes = Wish.objects.filter(person=person)
         
-    person = User.objects.get(username=username).person
-    wishes = Wish.objects.filter(person=person)
-    
-    data = serializers.serialize("json", wishes)
-    return HttpResponse(data)
+        data = serializers.serialize("json", wishes)
+        return HttpResponse(data)
+
+    elif request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        data = json.loads(body_unicode)
+        user = request.user
+
+        person = user.person
+        newWish = Wish(person=person, name=data["name"])
+        newWish.save()
+
+        data = serializers.serialize("json", [newWish,])
+        return HttpResponse(data, status=201)
