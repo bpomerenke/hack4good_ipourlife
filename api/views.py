@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from api.models import Person, generate_token_id, AccountToken
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 import json
 import logging
 
@@ -22,6 +23,9 @@ def checkToken(request):
 
 @csrf_exempt
 def createToken(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+    
     body_unicode = request.body.decode('utf-8')
     data = json.loads(body_unicode)
 
@@ -42,3 +46,24 @@ def createYouth(request):
     except:
         logging.exception('')
         return HttpResponse(status=400)
+
+@csrf_exempt
+def loginUser(request):    
+    body_unicode = request.body.decode('utf-8')
+    data = json.loads(body_unicode)
+
+    try: 
+        user = authenticate(request, username=data["username"], password=data["password"])
+        if user is not None:
+            login(request, user)
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=401)
+    except:
+        logging.exception('')
+        return HttpResponse(status=500)
+
+@csrf_exempt
+def logoutUser(request):
+    logout(request)
+    return HttpResponse(status=200)
