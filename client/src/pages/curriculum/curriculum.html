@@ -5,27 +5,35 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Curriculum</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  <ion-list>
-  <button ion-item *ngFor="let module of getModules()" (click)="itemSelected(item)">
-    {{module.name}}
-    <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
-  </button> 
-</ion-list>
+  <ion-list *ngIf="currentAssignment == null">
+    <div *ngFor="let module of getModules()">
+      <button ion-item (click)="toggleSelection(module)">
+      {{module.name}}
+      <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
+    </button>
+      <ion-list inset *ngIf="module.selected">
+        <button ion-item *ngFor="let assignment of module.assignments" (click)="selectAssignment(assignment)">
+        {{assignment.name}}
+      </button>
+      </ion-list>
+    </div>
+  </ion-list>
+  <div *ngIf="currentAssignment != null">
+    <button ion-item (click)="selectAssignment(null)">&lt; Back to modules</button>
+    <embed src="../assets/LifeStrengths Currciulum Activities &amp; LifeWork.pdf" type='application/pdf'>
+  </div>
 </ion-content>
 
 <style>
   .complete-count {
-      display:inline-block; 
-      position: absolute; 
-      right: 0px;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
   }
 </style>
