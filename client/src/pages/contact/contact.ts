@@ -16,6 +16,16 @@ export class ContactPage {
       name: 'Stephanie Anderson',
       number: '417-581-3607',
       img: '../assets/imgs/stephanieanderson.jpg'
+    },
+    {
+      name: 'Sherry Coker',
+      number: '417-447-8884',
+      img: '../assets/imgs/sherrycoker.jpeg'
+    },
+    {
+      name: 'Greg Johnson',
+      number: '602-888-0235',
+      img: '../assets/imgs/gregjohnson.jpg'
     }
   ];
 
