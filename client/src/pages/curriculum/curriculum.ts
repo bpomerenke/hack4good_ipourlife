@@ -13,12 +13,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-curriculum',
   templateUrl: 'curriculum.html',
 })
+
 export class CurriculumPage {
 
-  private assignments : any[] = [
-    {id: 1, name: "First Assignment", isCompleted: false},
-    {id: 2, name: "Second Assignment", isCompleted: true},
-    {id: 3, name: "Third Assignment", isCompleted: false}
+  private assignments1:any[] = [{name: "Activity 1", isCompleted: false},{name: "Activity 2", isCompleted: true}];
+  private assignments2:any[] = [{name: "Worksheet 1", isCompleted: true}, {name: "Activity 3", isCompleted: true}];
+  private assignments3:any[] = [{name: "Worksheet 2", isCompleted: false}];
+
+  private modules : Module[] = [
+    new Module(1, "Emotional Development", this.assignments1),
+    new Module(2, "Identity Development", this.assignments2),
+    new Module(3, "Employment Development", this.assignments3)
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -28,8 +33,26 @@ export class CurriculumPage {
     console.log('ionViewDidLoad CurriculumPage');
   }
 
-  getAssignments(): any[] {
-    return this.assignments;
+  getModules(): any[] {
+    return this.modules;
   }
 
+  itemSelected(item:any): void{
+
+  }
+}
+
+export class Assignment
+{
+  name: string
+  isCompleted: boolean
+}
+
+export class Module
+{
+  constructor(public id: number, public name: string, public assignments: Assignment[]) { }
+
+  numberComplete() : number {
+    return this.assignments.filter(x => x.isCompleted).length;
+  }
 }

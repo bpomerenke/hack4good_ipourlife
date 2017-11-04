@@ -14,5 +14,18 @@
 
 
 <ion-content padding>
-  <h2 *ngFor="let assignment of assignments">{{assignment.name}}</h2>
+  <ion-list>
+  <button ion-item *ngFor="let module of getModules()" (click)="itemSelected(item)">
+    {{module.name}}
+    <span class="complete-count">{{module.numberComplete()}} / {{module.assignments.length}}</span>
+  </button> 
+</ion-list>
 </ion-content>
+
+<style>
+  .complete-count {
+      display:inline-block; 
+      position: absolute; 
+      right: 0px;
+  }
+</style>
