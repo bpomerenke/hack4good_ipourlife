@@ -6,3 +6,4 @@ Design/.DS_Store
 .DS_Store
 client/package-lock.json
 Client/package.json
+db.sqlite3
