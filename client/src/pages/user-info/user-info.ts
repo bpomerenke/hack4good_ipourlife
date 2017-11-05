@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
-import { UserProvider } from '../../providers/user/user';
+import { IonicPage, NavController } from 'ionic-angular';
 import { TabsPage } from '../../pages/tabs/tabs';
+import { LoginProvider } from '../../providers/login/login';
 
 /**
  * Generated class for the UserInfoPage page.
@@ -10,31 +10,21 @@ import { TabsPage } from '../../pages/tabs/tabs';
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
   selector: 'page-user-info',
   templateUrl: 'user-info.html',
 })
 export class UserInfoPage {
 
-  constructor(private navController: NavController, private userProvider: UserProvider) {
+  constructor(private navController: NavController, private loginProvider: LoginProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserInfoPage');
   }
 
-  toggleUser(){
-    let currentUser = this.userProvider.currentUser;
-
-    if(currentUser && currentUser.type == 'Youth'){
-      this.userProvider.currentUser = { name: 'Janet Coach', type: 'Coach'}
-    } else {
-      this.userProvider.currentUser = { name: 'Joe Youth', type: 'Youth'}
-    }
-  }
-
   get User(){
-    return this.userProvider.currentUser;
+    return this.loginProvider.currentUser;
   }
-
 }

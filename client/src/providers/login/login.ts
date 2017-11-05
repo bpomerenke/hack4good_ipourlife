@@ -30,7 +30,7 @@ export class LoginProvider {
       .toPromise()
       .then((response: Response) => {
         let body = response.json();
-        this.currentUser = new Person(body.user, body.person_type, body.phone_number, body.contacts);
+        this.currentUser = new Person(body.user, body.person_type, body.phone_number, body.first_name, body.last_name, body.email);
         return response;
       });
   }
@@ -44,7 +44,13 @@ export interface User {
 }
 
 export class Person {
-  constructor(public user: number, public person_type: number, public phone_number: string, public contacts: any[]) {
+  constructor(public user: number, 
+              public person_type: number, 
+              public phone_number: string,
+              public first_name: string,
+              public last_name: string,
+              public email: string
+              ) {
 
   }
 

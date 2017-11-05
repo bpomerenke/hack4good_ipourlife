@@ -3,6 +3,6 @@
   <ion-tab [root]="wishlistRoot" tabTitle="Wishlist" tabIcon="color-wand"></ion-tab>
   <ion-tab [root]="eventsRoot" tabTitle="Events" tabIcon="calendar"></ion-tab>
   <ion-tab [root]="resourcesRoot" tabTitle="Resources" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="curriculumRoot" tabTitle="Curriculum" tabIcon="book"></ion-tab>
-  <ion-tab [root]="userInfoRoot" tabTitle="User" tabIcon="person"></ion-tab>
+  <ion-tab [root]="curriculumRoot" tabTitle="Curriculum" tabIcon="book"></ion-tab>  
+  <ion-tab *ngIf="isCoach()" [root]="userInfoRoot" tabTitle="User" tabIcon="person"></ion-tab>
 </ion-tabs>
