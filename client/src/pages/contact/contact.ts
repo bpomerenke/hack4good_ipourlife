@@ -54,7 +54,12 @@ export class ContactPage {
 
   saveContact() {
     // TODO: format phone numbers
-    this.isAddingContact = false;
+    this.isAddingContact = false;    
+
+    if(!this.newContactFirstName || !this.newContactLastName){
+      return;
+    }
+
     let newContact: Object = {
       name: this.newContactFirstName + ' ' + this.newContactLastName,
       number: this.newContactPhone,
