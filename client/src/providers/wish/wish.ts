@@ -18,16 +18,10 @@ export class WishProvider {
   }
 
   getWishes(): Promise<Wish[]> {
-    if (this.cache == null) {
       return this.http
         .get("https://arcane-citadel-61571.herokuapp.com/api/wishes", {withCredentials: true})
         .toPromise()
-        .then(x => {
-          this.cache = x.json();
-          return this.cache;
-        });
-    }
-    return Promise.resolve(this.cache);
+        .then(x =>  x.json());
   }
 
   postWishes(wish: Wish): Promise<Response> {

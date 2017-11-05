@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { Assignment } from '../../models/Assignment'
+import { Activity } from '../../models/Activity'
 
 /*
   Generated class for the ActivityProvider provider.

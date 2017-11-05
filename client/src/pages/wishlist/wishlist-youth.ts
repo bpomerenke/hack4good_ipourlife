@@ -86,16 +86,20 @@ export class WishlistYouthPage {
     }
   ]
 
+  wishView:string;
   selectedItems:{} = { 'Supplies' : [], 'Groceries':[], 'Clothing':[], 'Misc': [] };
   currentWishes:Wish[] = [];
   
   constructor(private wishProvider: WishProvider, public alertCtrl: AlertController) {
-    console.log("constructor login")
-    this.wishProvider.getWishes().then((wishes)=>{
-      this.currentWishes = wishes;
-    });
+    this.refreshOpenRequests();
   }
 
+  refreshOpenRequests() {
+    this.wishProvider.getWishes().then((wishes)=>{
+      this.currentWishes = wishes;
+      this.wishView = 'myRequests';
+    });
+  }
   getWishlistItems():any[]{
     return this.wishlistItems;
   }
@@ -104,6 +108,8 @@ export class WishlistYouthPage {
     for(let item of this.getSelectedItems()){
       await this.wishProvider.postWishes({name: item});
     }
+
+    this.refreshOpenRequests();
   }
 
   getRequests(): Wish[] {
