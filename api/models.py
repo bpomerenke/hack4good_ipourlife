@@ -93,6 +93,23 @@ class Wish(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     name = models.CharField(max_length=256)
 
+class Activity(models.Model):
+    def __str__(self):
+        return 'Activity: ' + self.title + " (" + self.module_name + ")"
+
+    objects = models.Manager()
+    title = models.CharField(max_length=256)
+    description = models.CharField(max_length=1000)
+    content = models.CharField(max_length=4000)
+    module_name = models.CharField(max_length=256)
+
+class Assignment(models.Model):
+    def __str__(self):
+        return 'Assignment: ' + self.activity.title + ' for ' + self.person.user.username
+        
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+
 @receiver(post_save, sender=User)
 def create_user_person(sender, instance, created, **kwargs):
     if created:

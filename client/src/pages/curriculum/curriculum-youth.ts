@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Assignment } from '../../models/Assignment';
 
+import { ActivityProvider } from '../../providers/activity/activity'
+
 /**
  * Generated class for the CurriculumPage page.
  *
@@ -14,20 +16,28 @@ import { Assignment } from '../../models/Assignment';
 })
 
 export class CurriculumYouthPage {
-    private assignments1: any[] = [{ name: "Activity 1", isCompleted: false }, { name: "Activity 2", isCompleted: true }];
-    private assignments2: any[] = [{ name: "Worksheet 1", isCompleted: true }, { name: "Activity 3", isCompleted: true }];
-    private assignments3: any[] = [{ name: "Worksheet 2", isCompleted: false }];
+    private modules: Module[] = [];
 
-    private modules: Module[] = [
-        new Module(1, "Emotional Development", this.assignments1),
-        new Module(2, "Identity Development", this.assignments2),
-        new Module(3, "Employment Development", this.assignments3)
-    ];
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad CurriculumPage');
+    constructor(private activityProvider: ActivityProvider){
+        this.refreshContent();
     }
+    ionViewDidLoad() {
+    }
+    refreshContent() {
+        this.activityProvider.getAll().then((activities)=>{
+            this.modules = [];
+            console.log("got activities:", activities);
 
+            for(let activity of activities){
+                let newModule = new Module(4, activity.module_name, []);
+                let assignmnet = new Assignment();
+                assignmnet.name = activity.title;
+                assignmnet.isCompleted = false;
+                newModule.assignments.push(assignmnet);
+                this.modules.push(newModule);
+            }
+        });
+    }
     getModules(): any[] {
         return this.modules;
     }

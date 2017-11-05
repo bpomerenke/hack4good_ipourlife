@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from api.models import Person, generate_token_id, AccountToken, Wish, User, Contact, Resource
+from api.models import Person, generate_token_id, AccountToken, Wish, User, Contact, Resource, Activity
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -87,8 +87,10 @@ def wishes(request, username=None):
             
         person = User.objects.get(username=username).person
         wishes = Wish.objects.filter(person=person)
-        
-        data = serializers.serialize("json", wishes)
+        serializable = [{
+            "name": wish.name
+            } for wish in wishes]
+        data = json.dumps(serializable)  
         return HttpResponse(data)
 
     elif request.method == "POST":
@@ -146,5 +148,17 @@ def resources(request):
         "phone": resource.phone,
         "email": resource.email
         } for resource in resources]
+    data = json.dumps(serializable)
+    return HttpResponse(data)
+
+@csrf_exempt
+def activities(request):
+    activities = Activity.objects.all()
+    serializable = [{
+        "title": activity.title, 
+        "description": activity.description, 
+        "content": activity.content,
+        "module_name": activity.module_name
+        } for activity in activities]
     data = json.dumps(serializable)
     return HttpResponse(data)
