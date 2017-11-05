@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
 import { LoginProvider } from '../../providers/login/login';
 /**
@@ -9,7 +9,6 @@ import { LoginProvider } from '../../providers/login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
