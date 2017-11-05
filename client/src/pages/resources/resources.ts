@@ -13,7 +13,11 @@ export class ResourcesPage {
   public resources: Resource[] = [];
 
   constructor(public navCtrl: NavController, private emailComposer: EmailComposer, private resourceProvider: ResourceProvider) {
-    resourceProvider.getResources().then(x => this.resources = x);
+    
+  }
+
+  ionViewDidLoad(){
+    this.resourceProvider.getResources().then(x => this.resources = x);
   }
 
   getResources(): Resource[] {
