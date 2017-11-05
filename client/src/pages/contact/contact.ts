@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
 export class ContactPage {
+  isAddingContact: boolean = false;
   public contacts: any[] = [
     {
       name: 'Mark Delaney',
@@ -29,15 +29,24 @@ export class ContactPage {
     }
   ];
 
-  constructor(public navCtrl: NavController) {
-
-  }
-
   getContacts():any[]{
     return this.contacts;
   }
 
   call(contact: any) {
      window.location.href = `tel:${contact.number}`;
+  }
+
+  add() {
+    this.isAddingContact = true;
+  }
+
+  contactCreated($event){
+    this.isAddingContact = false;
+    this.contacts.push($event);
+  }
+
+  contactCancel(){
+    this.isAddingContact = false;
   }
 }

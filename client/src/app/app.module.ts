@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
+import { NewContactPage } from '../pages/contact/newContact';
 import { EventsPage } from '../pages/events/events';
 import { ResourcesPage} from '../pages/resources/resources';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -21,6 +22,7 @@ import { CurriculumCoachPage } from '../pages/curriculum/curriculum-coach';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserProvider } from '../providers/user/user';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { UserProvider } from '../providers/user/user';
     WishlistYouthPage,
     CurriculumYouthPage,
     CurriculumCoachPage,
-    UserInfoPage
+    UserInfoPage,
+    EventsPage,
+    NewContactPage
   ],
   imports: [
     BrowserModule,
@@ -56,13 +60,15 @@ import { UserProvider } from '../providers/user/user';
     WishlistYouthPage,
     CurriculumYouthPage,
     CurriculumCoachPage,
-    UserInfoPage
+    UserInfoPage,
+    NewContactPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    Camera
   ]
 })
 export class AppModule {}

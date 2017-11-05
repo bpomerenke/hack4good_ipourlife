@@ -7,15 +7,23 @@
 </ion-header>
 
 <ion-content>
-  <button ion-button clear item-end icon-start large color='danger'><ion-icon name="add-circle"></ion-icon></button>    
-  <ion-list>
-    <ion-item *ngFor="let contact of getContacts()">
-      <ion-thumbnail item-start>
-        <img src="{{contact.img}}">
-      </ion-thumbnail>
-      <h2>{{contact.name}}</h2>
-      <p>{{contact.number}}</p>
-      <button ion-button clear item-end icon-start large (click)="call(contact)"><ion-icon name="call"></ion-icon>Call</button>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="!isAddingContact">
+    <div text-right>
+      <button ion-button clear large color='danger' align='right' (click)="add()">
+          <ion-icon class="add-icon" name="add-circle"></ion-icon>
+      </button>
+    </div> 
+    <ion-list>
+      <ion-item *ngFor="let contact of getContacts()">
+        <ion-thumbnail item-start>
+          <img src="{{contact.img}}">
+        </ion-thumbnail>
+        <h2>{{contact.name}}</h2>
+        <p>{{contact.number}}</p>
+        <button ion-button clear item-end icon-start large (click)="call(contact)"><ion-icon name="call"></ion-icon>Call</button>
+      </ion-item>
+    </ion-list>
+  </div>
+  <page-contact-new *ngIf="isAddingContact" (contactCreated)="contactCreated($event)" (contactCancel)="contactCancel()"></page-contact-new>
+<!-- add contact screen-->
 </ion-content>
