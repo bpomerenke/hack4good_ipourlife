@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+
+import { Contact } from '../../models/Contact';
 
 /*
   Generated class for the ContactProvider provider.
@@ -20,6 +22,10 @@ export class ContactProvider {
   createContact(contact: any): Promise<any>{
     return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/contacts", contact)
                   .toPromise();                  
+  }
+
+  getAll(): Promise<Contact[]>{
+    return this.http.get("https://arcane-citadel-61571.herokuapp.com/api/contacts", {withCredentials: true}).toPromise().then((x: Response) => x.json());;
   }
 
 }
