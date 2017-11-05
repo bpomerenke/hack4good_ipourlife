@@ -43,4 +43,8 @@ export class ResourcesPage {
   getResources():any[]{
     return this.resources;
   }
+
+  call(contact: any) {
+    window.location.href = `tel:${contact.number}`;
+ }
 }

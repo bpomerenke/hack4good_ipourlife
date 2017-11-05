@@ -25,8 +25,8 @@ export class ContactPage {
     return this.contacts;
   }
 
-  call(contact: any) {
-     window.location.href = `tel:${contact.number}`;
+  call(resource: any) {
+     window.location.href = `tel:${resource.phone}`;
   }
 
   add() {
