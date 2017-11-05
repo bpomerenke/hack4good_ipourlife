@@ -148,3 +148,15 @@ def resources(request):
         } for resource in resources]
     data = json.dumps(serializable)
     return HttpResponse(data)
+
+@csrf_exempt
+def activities(request):
+    activities = Activity.objects.all()
+    serializable = [{
+        "title": activity.title, 
+        "description": activity.description, 
+        "content": activity.content,
+        "module_name": activity.module_name
+        } for activity in activities]
+    data = json.dumps(serializable)
+    return HttpResponse(data)
