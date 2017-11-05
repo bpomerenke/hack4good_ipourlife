@@ -16,4 +16,23 @@
 <ion-content padding>
   <h1 text-center>Welcome,</h1>
   <h2 text-center *ngIf="User != undefined">{{User.name}} ({{User.type}})</h2>
+
+  <form>
+    <h2>Invite a youth</h2>
+    <ion-item padding>
+      <ion-label>First name:</ion-label>
+      <ion-input type="text" [(ngModel)]="first_name" name="first_name"></ion-input>
+    </ion-item>
+    <ion-item padding>
+      <ion-label>Last name:</ion-label>
+      <ion-input type="text" [(ngModel)]="last_name" name="last_name"></ion-input>
+    </ion-item>
+    <ion-item padding>
+      <ion-label>Phone number:</ion-label>
+      <ion-input type="text" [(ngModel)]="phone_number" name="phone_number"></ion-input>
+    </ion-item>
+    <button [disabled]="!canCreateInvite()" ion-button type="button" (click)="createToken()" block>Create Invite</button>
+    <h2 *ngIf="token_id != null">Token: {{token_id}}</h2>
+  </form>
+
 </ion-content>

@@ -18,21 +18,27 @@ export class LoginProvider {
   }
 
   checkToken(token: string): Promise<Response> {
-    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/checkToken", { token_id: token }).toPromise();
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/checkToken", { token_id: token }, {withCredentials: true}).toPromise();
   }
 
   createYouth(user: User): Promise<Response> {
-    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/createYouth", user).toPromise();
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/createYouth", user, {withCredentials: true}).toPromise();
   }
 
   login(user: User): Promise<Response> {
-    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/login", user)
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/login", user, {withCredentials: true})
       .toPromise()
       .then((response: Response) => {
         let body = response.json();
         this.currentUser = new Person(body.user, body.person_type, body.phone_number, body.first_name, body.last_name, body.email);
         return response;
       });
+  }
+
+  createToken(tokenInfo: any): Promise<string> {
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/createToken", tokenInfo, {withCredentials: true})
+      .toPromise()
+      .then((x: Response) => x.json().token_id);
   }
 }
 
