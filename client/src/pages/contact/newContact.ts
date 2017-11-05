@@ -27,7 +27,7 @@ export class NewContactPage {
         let newContact = new Contact();
         newContact.name = this.newContactFirstName + ' ' + this.newContactLastName;
         newContact.number = this.newContactPhone;
-        newContact.img = this.newContactPhoto? this.newContactPhoto : '../assets/imgs/defaultimage.jpg';
+        newContact.img = this.newContactPhoto? this.newContactPhoto : './assets/imgs/defaultimage.jpg';
         
         this.newContactFirstName = null;
         this.newContactLastName = null;
