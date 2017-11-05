@@ -28,11 +28,11 @@ export class CurriculumYouthPage {
 
     constructor(private activityProvider: ActivityProvider){
 
+        this.activityProvider.getAll().then((activities)=>{
+            console.log("got activities:", activities);
+        });
     }
     ionViewDidLoad() {
-        this.activityProvider.getAll().then((activities)=>{
-
-        });
     }
 
     getModules(): any[] {
