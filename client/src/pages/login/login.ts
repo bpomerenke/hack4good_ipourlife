@@ -18,6 +18,9 @@ export class LoginPage {
   username: string = "";
   password: string = "";
   token: string = "";
+  email: string = "";
+  tokenValid: boolean = false;
+  submitted: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     console.log("constructor login")
@@ -27,11 +30,24 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  loadApp(){
+  loadApp() {
     this.navCtrl.push(TabsPage);
   }
 
   checkToken() {
+    this.submitted = true;
+    // tokenProvider.check(this.token).then(()=>{
+    if (this.token.length == 4) {
+      this.tokenValid = true;
+    }
+    // });
+  }
 
+  createUserAndLogIn() {
+
+  }
+
+  get submitButtonColor(): string {
+    return !this.tokenValid && !this.submitted ? 'default' : 'danger';
   }
 }

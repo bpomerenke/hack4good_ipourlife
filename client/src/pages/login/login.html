@@ -13,7 +13,8 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div ion-fixed padding style="height: 100%; width: 100%">
   <ion-segment [(ngModel)]="loginType" color="primary">
     <ion-segment-button value="existing">
       <ion-icon name="log-in"></ion-icon>
@@ -40,12 +41,29 @@
   </div>
 
   <div *ngIf="loginType == 'new'">
-    <form (ngSubmit)="checkToken()">
+    <form>
       <ion-item padding>
         <ion-label>Token:</ion-label>
-        <ion-input type="text" [(ngModel)]="token" name="token"></ion-input>
+        <ion-input [disabled]="tokenValid" type="text" [(ngModel)]="token" name="token"></ion-input>
       </ion-item>
-      <button ion-button type="submit" block>Continue</button>
+
+      <div *ngIf="tokenValid">
+        <ion-item padding>
+          <ion-label>Username:</ion-label>
+          <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+        </ion-item>
+        <ion-item padding>
+          <ion-label>Password:</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+        </ion-item>
+        <ion-item padding>
+          <ion-label>Email:</ion-label>
+          <ion-input placeholder="(optional)" type="text" [(ngModel)]="email" name="email"></ion-input>
+        </ion-item>
+        <button ion-button type="button" (click)="createUserAndLogIn()" block>Log In</button>  
+      </div>
+      <button *ngIf="!tokenValid" ion-button type="button" (click)="checkToken()" block [color]="submitButtonColor">Continue</button>
     </form>
+  </div>
   </div>
 </ion-content>
