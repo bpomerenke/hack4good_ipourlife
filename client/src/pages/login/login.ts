@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
+import { LoginProvider } from '../../providers/login/login';
 /**
  * Generated class for the LoginPage page.
  *
@@ -22,7 +23,7 @@ export class LoginPage {
   tokenValid: boolean = false;
   submitted: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginProvider: LoginProvider) {
     console.log("constructor login")
   }
 
@@ -36,11 +37,10 @@ export class LoginPage {
 
   checkToken() {
     this.submitted = true;
-    // tokenProvider.check(this.token).then(()=>{
-    if (this.token.length == 4) {
+    this.loginProvider.checkToken(this.token).then((response)=>{
+      console.log("response: ", response);
       this.tokenValid = true;
-    }
-    // });
+    });
   }
 
   createUserAndLogIn() {
