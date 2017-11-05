@@ -82,6 +82,8 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8100',
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
