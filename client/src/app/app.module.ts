@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
+import { NewContactPage } from '../pages/contact/newContact';
 import { EventsPage } from '../pages/events/events';
 import { ResourcesPage} from '../pages/resources/resources';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -38,7 +39,8 @@ import { Camera } from '@ionic-native/camera';
     CurriculumYouthPage,
     CurriculumCoachPage,
     UserInfoPage,
-    EventsPage
+    EventsPage,
+    NewContactPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import { Camera } from '@ionic-native/camera';
     WishlistYouthPage,
     CurriculumYouthPage,
     CurriculumCoachPage,
-    UserInfoPage
+    UserInfoPage,
+    NewContactPage
   ],
   providers: [
     StatusBar,

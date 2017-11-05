@@ -24,38 +24,6 @@
       </ion-item>
     </ion-list>
   </div>
+  <page-contact-new *ngIf="isAddingContact" (contactCreated)="contactCreated($event)"></page-contact-new>"
 <!-- add contact screen-->
-  <div *ngIf="isAddingContact">
-    <div padding>
-      <h3>Please enter the new contact.</h3>
-    </div>
-    <ion-list>
-      <ion-item>
-        <ion-label floating>First Name</ion-label>
-        <ion-input type="text" [(ngModel)]="newContactFirstName"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Last Name</ion-label>
-        <ion-input type="text" [(ngModel)]="newContactLastName"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Number</ion-label>
-        <ion-input type="tel" [(ngModel)]="newContactPhone"></ion-input>
-      </ion-item>
-      <ion-item>
-        <div text-center>
-          <button ion-button clear large icon-start (click)="uploadPhoto()">
-              <ion-icon large name='md-photos'></ion-icon>
-              Upload a photo
-            </button>
-        </div>
-      </ion-item>   
-    </ion-list>
-    <div text-center>
-      <button ion-button round (click)="saveContact()">
-          Add Contact
-      </button>
-    </div>
-  </div>
-
 </ion-content>
