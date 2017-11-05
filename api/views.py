@@ -18,8 +18,8 @@ def checkToken(request):
     data = json.loads(body_unicode)
     token_id = data['token_id']
 
-    exists = AccountToken.objects.filter(token_id=token_id).exists()
-
+    exists = AccountToken.objects.filter(token_id=token_id, used=False).exists()
+    
     return HttpResponse(status= (200 if exists else 404))
 
 @csrf_exempt
@@ -41,7 +41,7 @@ def createYouth(request):
     data = json.loads(body_unicode)
 
     try:
-        token = AccountToken.objects.get(token_id=data["token_id"]) # type: AccountToken
+        token = AccountToken.objects.filter(token_id=data["token_id"], used=False).latest('id') # type: AccountToken
         user = token.createUser(data["username"], data["password"], data["email"])
         return HttpResponse(status=201)
     except:
@@ -57,7 +57,14 @@ def loginUser(request):
         user = authenticate(request, username=data["username"], password=data["password"])
         if user is not None:
             login(request, user)
-            return HttpResponse(serializers.serialize("json", [user.person,]), status=200)
+            view = {
+                "phone_number": user.person.phone_number,
+                "person_type": user.person.person_type,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "email": user.email
+            }
+            return HttpResponse(json.dumps(view), status=200)
         else:
             return HttpResponse(status=401)
     except:

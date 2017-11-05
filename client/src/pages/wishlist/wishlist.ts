@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { UserProvider } from '../../providers/user/user';
+import { LoginProvider } from '../../providers/login/login';
 
 @Component({
   selector: 'page-wishlist',
   templateUrl: 'wishlist.html'
 })
 export class WishlistPage {
-  constructor(private userProvider: UserProvider){
+  constructor(private loginProvider: LoginProvider){
 
   }
 
   getUserType(): string{
-    return this.userProvider.currentUser.type;
+    return this.loginProvider.currentUser.type;
   }
 }
