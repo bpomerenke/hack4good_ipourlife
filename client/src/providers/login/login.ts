@@ -17,6 +17,6 @@ export class LoginProvider {
   }
 
   checkToken(token: string):Promise<Response> {
-    return this.http.post("http://localhost:8000/api/checkToken", { token_id: token }).toPromise();
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/checkToken", { token_id: token }).toPromise();
   }
 }
