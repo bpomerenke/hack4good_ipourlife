@@ -1,0 +1,79 @@
+<div>
+    <div padding>
+      <h3>Please enter the new event.</h3>
+    </div>
+
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input type="text" [(ngModel)]="newEventTitle"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>Date</ion-label>
+          <ion-select [(ngModel)]="newEventMonth" interface="popover">
+            <ion-option>January</ion-option>
+            <ion-option>February</ion-option>
+            <ion-option>March</ion-option>
+            <ion-option>April</ion-option>
+            <ion-option>May</ion-option>
+            <ion-option>June</ion-option>
+            <ion-option>July</ion-option>
+            <ion-option>August</ion-option>
+            <ion-option>September</ion-option>
+            <ion-option>October</ion-option>
+            <ion-option>November</ion-option>
+            <ion-option>December</ion-option>
+          </ion-select>
+          <ion-select [(ngModel)]="newEventDay" interface="popover">
+              <ion-option>1</ion-option>
+              <ion-option>2</ion-option>
+              <ion-option>3</ion-option>
+              <ion-option>4</ion-option>
+              <ion-option>5</ion-option>
+              <ion-option>6</ion-option>
+              <ion-option>7</ion-option>
+              <ion-option>8</ion-option>
+              <ion-option>9</ion-option>
+              <ion-option>10</ion-option>
+              <ion-option>11</ion-option>
+              <ion-option>12</ion-option>
+              <ion-option>13</ion-option>
+              <ion-option>14</ion-option>
+              <ion-option>15</ion-option>
+              <ion-option>16</ion-option>
+              <ion-option>17</ion-option>
+              <ion-option>18</ion-option>
+              <ion-option>19</ion-option>
+              <ion-option>20</ion-option>
+              <ion-option>21</ion-option>
+              <ion-option>22</ion-option>
+              <ion-option>23</ion-option>
+              <ion-option>24</ion-option>
+              <ion-option>25</ion-option>
+              <ion-option>26</ion-option>
+              <ion-option>27</ion-option>
+              <ion-option>28</ion-option>
+              <ion-option>29</ion-option>
+              <ion-option>30</ion-option>
+              <ion-option>31</ion-option>              
+            </ion-select>
+          <ion-select [(ngModel)]="newEventYear" interface="popover">
+            <ion-option>2017</ion-option>
+            <ion-option>2018</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+    </ion-list>
+    <div text-center>
+      <button ion-button round (click)="saveEvent()">
+          Add Event
+      </button>
+    </div>
+    <div text-center>
+      <button ion-button round (click)="cancelEvent()">
+          Cancel
+      </button>
+    </div>
+</div>
