@@ -12,7 +12,7 @@ import { User } from '../../models/User'
 @Injectable()
 export class UserProvider {
 
-  currentUser: User = { name: 'Joe Youth', type: 'Youth' };
+  currentUser: User;
 
   constructor(public http: Http) {
     console.log('Hello UserProvider Provider');
