@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login/login'
 /**
  * Generated class for the CurriculumPage page.
@@ -8,7 +7,6 @@ import { LoginProvider } from '../../providers/login/login'
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-curriculum',
   templateUrl: 'curriculum.html',

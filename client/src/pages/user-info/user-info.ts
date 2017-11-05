@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { TabsPage } from '../../pages/tabs/tabs';
 import { LoginProvider } from '../../providers/login/login';
 
 /**
@@ -10,7 +8,6 @@ import { LoginProvider } from '../../providers/login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-user-info',
   templateUrl: 'user-info.html',
@@ -21,7 +18,7 @@ export class UserInfoPage {
   phone_number: string = ""
   token_id: string = null
 
-  constructor(private navController: NavController, private loginProvider: LoginProvider) {
+  constructor(private loginProvider: LoginProvider) {
   }
 
   ionViewDidLoad() {
