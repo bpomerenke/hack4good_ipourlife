@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from api.models import Person, generate_token_id, AccountToken, Wish, User, Contact
+from api.models import Person, generate_token_id, AccountToken, Wish, User, Contact, Resource
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -134,4 +134,11 @@ def contacts(request):
         } for contact in contacts]
     data = json.dumps(serializable)
 
+    return HttpResponse(data)
+
+@csrf_exempt
+def resources(request):
+    resources = Resource.objects.all()
+    serializable = [{"name": resource.name, "description": resource.description, "image": resource.description} for resource in resources]
+    data = json.dumps(serializable)
     return HttpResponse(data)

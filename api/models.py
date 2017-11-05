@@ -74,6 +74,12 @@ class AccountToken(models.Model):
         self.save()
         return newUser
 
+class Resource(models.Model):
+    objects = models.Manager()
+    name = mdoels.CharField(max_length=256)
+    description = models.CharField(max_length=2560)
+    image = models.TextField()
+
 class Wish(models.Model):
     def __str__(self):
         return 'Wish: ' + self.name + ' (for ' + self.person.user.username + ')'
