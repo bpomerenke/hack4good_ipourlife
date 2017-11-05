@@ -13,6 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'events.html',
 })
 export class EventsPage {
+  isAddingEvent: boolean = false;
 
   public events:any[] = [
     {name: 'Hack4Good', date: 'Nov 4', month: 'November 2017', favorite: true},
@@ -55,6 +56,19 @@ export class EventsPage {
 
   toggleFavorite(event: any){
     event.favorite = !event.favorite;
+  }
+
+  add() {
+    this.isAddingEvent = true;
+  }
+
+  eventCreated($event){
+    this.isAddingEvent = false;
+    this.events.push($event);
+  }
+
+  eventCancel(){
+    this.isAddingEvent = false;
   }
 
 }

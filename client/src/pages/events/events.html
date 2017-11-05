@@ -14,27 +14,36 @@
 
 
 <ion-content>
-  <ion-item-group>
-    <span *ngFor="let month of getEvents()">
-    <ion-item-divider color="light">{{month.name}}</ion-item-divider>
-    <ion-item *ngFor="let event of month.events">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-10>
-            <h2><strong>{{event.name}}</strong></h2>
-            {{event.date}}
-          </ion-col>
-          <ion-col col-1>
-            <button *ngIf="event.favorite" ion-button color="dark" icon-only clear (click)="toggleFavorite(event)">
-              <ion-icon name="star"></ion-icon>
-            </button>
-            <button *ngIf="!event.favorite" ion-button color="dark" icon-only clear (click)="toggleFavorite(event)">
-              <ion-icon name="star-outline"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    </span>
-  </ion-item-group>
+  <div *ngIf="!isAddingEvent">
+    <div text-right>
+      <button ion-button clear large color='danger' align='right' (click)="add()">
+          <ion-icon class="add-icon" name="add-circle"></ion-icon>
+      </button>
+    </div> 
+    <ion-item-group>
+      <span *ngFor="let month of getEvents()">
+      <ion-item-divider color="light">{{month.name}}</ion-item-divider>
+      <ion-item *ngFor="let event of month.events">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10>
+              <h2><strong>{{event.name}}</strong></h2>
+              {{event.date}}
+            </ion-col>
+            <ion-col col-1>
+              <button *ngIf="event.favorite" ion-button color="dark" icon-only clear (click)="toggleFavorite(event)">
+                <ion-icon name="star"></ion-icon>
+              </button>
+              <button *ngIf="!event.favorite" ion-button color="dark" icon-only clear (click)="toggleFavorite(event)">
+                <ion-icon name="star-outline"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      </span>
+    </ion-item-group>
+  </div>
+
+  <page-event-new *ngIf="isAddingEvent" (eventCreated)="eventCreated($event)" (eventCancel)="eventCancel()"></page-event-new>
 </ion-content>
