@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 /*
@@ -13,6 +15,11 @@ export class ContactProvider {
 
   constructor(public http: Http) {
     console.log('Hello ContactProvider Provider');
+  }
+
+  createContact(contact: any): Promise<any>{
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/contacts", contact)
+                  .toPromise();                  
   }
 
 }
