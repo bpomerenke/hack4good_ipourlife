@@ -9,6 +9,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { NewContactPage } from '../pages/contact/newContact';
 import { EventsPage } from '../pages/events/events';
+import { NewEventPage } from '../pages/events/newEvent';
 import { ResourcesPage} from '../pages/resources/resources';
 import { TabsPage } from '../pages/tabs/tabs';
 import { UserInfoPage } from '../pages/user-info/user-info';
@@ -42,6 +43,7 @@ import { LoginProvider } from '../providers/login/login';
     UserInfoPage,
     EventsPage,
     NewContactPage,
+    NewEventPage,
     LoginPage
   ],
   imports: [
@@ -64,6 +66,7 @@ import { LoginProvider } from '../providers/login/login';
     CurriculumCoachPage,
     EventsPage,
     NewContactPage,
+    NewEventPage,
     UserInfoPage,
     LoginPage
   ],
