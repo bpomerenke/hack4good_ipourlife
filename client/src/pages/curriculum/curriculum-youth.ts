@@ -19,8 +19,13 @@ export class CurriculumYouthPage {
     private modules: Module[] = [];
 
     constructor(private activityProvider: ActivityProvider){
-
+        this.refreshContent();
+    }
+    ionViewDidLoad() {
+    }
+    refreshContent() {
         this.activityProvider.getAll().then((activities)=>{
+            this.modules = [];
             console.log("got activities:", activities);
 
             for(let activity of activities){
@@ -33,9 +38,6 @@ export class CurriculumYouthPage {
             }
         });
     }
-    ionViewDidLoad() {
-    }
-
     getModules(): any[] {
         return this.modules;
     }

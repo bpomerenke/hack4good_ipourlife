@@ -6,6 +6,7 @@
 -->
 
 <ion-list *ngIf="currentAssignment == null">
+    <button ion-button (click)="refreshContent()">Refresh</button>
     <div *ngFor="let module of getModules()">
         <button ion-item (click)="toggleSelection(module)">
             {{module.name}}
