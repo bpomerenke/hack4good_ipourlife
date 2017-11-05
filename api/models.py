@@ -76,7 +76,7 @@ class AccountToken(models.Model):
 
 class Resource(models.Model):
     objects = models.Manager()
-    name = mdoels.CharField(max_length=256)
+    name = models.CharField(max_length=256)
     description = models.CharField(max_length=2560)
     image = models.TextField()
 
