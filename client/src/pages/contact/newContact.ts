@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ContactProvider } from '../../providers/contact/contact';
+import { Contact } from '../../models/Contact';
 
 @Component({
   selector: 'page-contact-new',
@@ -14,7 +15,7 @@ export class NewContactPage {
 
     newContactFirstName: string;
     newContactLastName: string;
-    newContactPhone: number;
+    newContactPhone: string;
     newContactPhoto: any;
 
     saveContact() {
@@ -23,12 +24,11 @@ export class NewContactPage {
           return;
         }
     
-        let newContact: Object = {
-          name: this.newContactFirstName + ' ' + this.newContactLastName,
-          number: this.newContactPhone,
-          img: this.newContactPhoto? this.newContactPhoto : '../assets/imgs/defaultimage.jpg'
-        }
-    
+        let newContact = new Contact();
+        newContact.name = this.newContactFirstName + ' ' + this.newContactLastName;
+        newContact.number = this.newContactPhone;
+        newContact.img = this.newContactPhoto? this.newContactPhoto : '../assets/imgs/defaultimage.jpg';
+        
         this.newContactFirstName = null;
         this.newContactLastName = null;
         this.newContactPhone = null;

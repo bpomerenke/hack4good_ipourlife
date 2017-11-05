@@ -16,11 +16,11 @@ import { Contact } from '../../models/Contact';
 export class ContactProvider {
 
   constructor(public http: Http) {
-    console.log('Hello ContactProvider Provider');
   }
 
-  createContact(contact: any): Promise<any>{
-    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/contacts", contact)
+  createContact(contact: Contact): Promise<any>{
+    console.log("sending: ", contact);
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/contacts", contact, {withCredentials: true})
                   .toPromise();                  
   }
 
