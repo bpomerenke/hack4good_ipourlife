@@ -16,20 +16,21 @@ import { ActivityProvider } from '../../providers/activity/activity'
 })
 
 export class CurriculumYouthPage {
-    private assignments1: any[] = [{ name: "Activity 1", isCompleted: false }, { name: "Activity 2", isCompleted: true }];
-    private assignments2: any[] = [{ name: "Worksheet 1", isCompleted: true }, { name: "Activity 3", isCompleted: true }];
-    private assignments3: any[] = [{ name: "Worksheet 2", isCompleted: false }];
-
-    private modules: Module[] = [
-        new Module(1, "Emotional Development", this.assignments1),
-        new Module(2, "Identity Development", this.assignments2),
-        new Module(3, "Employment Development", this.assignments3)
-    ];
+    private modules: Module[] = [];
 
     constructor(private activityProvider: ActivityProvider){
 
         this.activityProvider.getAll().then((activities)=>{
             console.log("got activities:", activities);
+
+            for(let activity of activities){
+                let newModule = new Module(4, activity.module_name, []);
+                let assignmnet = new Assignment();
+                assignmnet.name = activity.title;
+                assignmnet.isCompleted = false;
+                newModule.assignments.push(assignmnet);
+                this.modules.push(newModule);
+            }
         });
     }
     ionViewDidLoad() {

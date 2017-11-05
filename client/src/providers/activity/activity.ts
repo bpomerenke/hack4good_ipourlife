@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { Assignment } from '../../models/Assignment'
+
 /*
   Generated class for the ActivityProvider provider.
 
@@ -16,8 +18,8 @@ export class ActivityProvider {
     console.log('Hello ActivityProvider Provider');
   }
 
-  getAll():Promise<any>{
-    return this.http.get("https://arcane-citadel-61571.herokuapp.com/api/activities", {withCredentials:true}).toPromise();
+  getAll():Promise<Activity[]>{
+    return this.http.get("https://arcane-citadel-61571.herokuapp.com/api/activities", {withCredentials:true}).toPromise().then((response)=>response.json());
   }
 
 }

@@ -95,7 +95,7 @@ class Wish(models.Model):
 
 class Activity(models.Model):
     def __str__(self):
-        return 'Activity: ' + self.title
+        return 'Activity: ' + self.title + " (" + self.module_name + ")"
 
     objects = models.Manager()
     title = models.CharField(max_length=256)
