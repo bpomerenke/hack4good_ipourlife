@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UserProvider } from '../../providers/user/user'
+import { IonicPage } from 'ionic-angular';
+import { LoginProvider } from '../../providers/login/login'
 /**
  * Generated class for the CurriculumPage page.
  *
@@ -7,18 +8,19 @@ import { UserProvider } from '../../providers/user/user'
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
   selector: 'page-curriculum',
   templateUrl: 'curriculum.html',
 })
 
 export class CurriculumPage {
-  constructor(private userProvider: UserProvider){
+  constructor(private loginProvider: LoginProvider){
 
   }
 
   getUserType():string {
-    return this.userProvider.currentUser.type;
+    return this.loginProvider.currentUser.type;
   }
 
   ionViewDidLoad() {

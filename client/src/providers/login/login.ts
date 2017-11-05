@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 */
 @Injectable()
 export class LoginProvider {
+  public currentUser: Person;  
 
   constructor(public http: Http) {
     console.log('Hello LoginProvider Provider');
@@ -25,7 +26,13 @@ export class LoginProvider {
   }
 
   login(user: User): Promise<Response> {
-    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/login", user).toPromise();
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/login", user)
+      .toPromise()
+      .then((response: Response) => {
+        let body = response.json();
+        this.currentUser = new Person(body.user, body.person_type, body.phone_number, body.contacts);
+        return response;
+      });
   }
 }
 
@@ -34,4 +41,14 @@ export interface User {
   username: string,
   password: string,
   email?: string
+}
+
+export class Person {
+  constructor(public user: number, public person_type: number, public phone_number: string, public contacts: any[]) {
+
+  }
+
+  get type(): string {
+    return this.person_type == 1 ? 'Youth' : 'Coach';
+  }
 }
