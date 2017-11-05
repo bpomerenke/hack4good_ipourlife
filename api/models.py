@@ -31,7 +31,7 @@ class Contact(models.Model):
     objects = models.Manager()
     number = models.CharField(max_length=64)
     name = models.CharField(max_length=64)
-    img = models.CharField(max_length=4000)
+    img = models.CharField(max_length=4000, default="")
 
 class Person(models.Model):
     objects = models.Manager()
