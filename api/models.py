@@ -79,6 +79,8 @@ class Resource(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=2560)
     image = models.TextField()
+    email = models.CharField(max_length=256, null=True)
+    phone = models.CharField(max_length=256, null=True)
 
 class Wish(models.Model):
     def __str__(self):

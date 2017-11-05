@@ -139,6 +139,6 @@ def contacts(request):
 @csrf_exempt
 def resources(request):
     resources = Resource.objects.all()
-    serializable = [{"name": resource.name, "description": resource.description, "image": resource.description} for resource in resources]
+    serializable = [{"name": resource.name, "description": resource.description, "image": resource.image} for resource in resources]
     data = json.dumps(serializable)
     return HttpResponse(data)
