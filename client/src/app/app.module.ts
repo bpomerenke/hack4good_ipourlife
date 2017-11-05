@@ -37,7 +37,8 @@ import { Camera } from '@ionic-native/camera';
     WishlistYouthPage,
     CurriculumYouthPage,
     CurriculumCoachPage,
-    UserInfoPage
+    UserInfoPage,
+    EventsPage
   ],
   imports: [
     BrowserModule,
