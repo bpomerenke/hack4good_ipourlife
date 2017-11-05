@@ -16,7 +16,22 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
-  checkToken(token: string):Promise<Response> {
+  checkToken(token: string): Promise<Response> {
     return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/checkToken", { token_id: token }).toPromise();
   }
+
+  createYouth(user: User): Promise<Response> {
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/createYouth", user).toPromise();
+  }
+
+  login(user: User): Promise<Response> {
+    return this.http.post("https://arcane-citadel-61571.herokuapp.com/api/login", user).toPromise();
+  }
+}
+
+export interface User {
+  token_id?: string,
+  username: string,
+  password: string,
+  email?: string
 }

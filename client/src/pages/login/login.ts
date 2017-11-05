@@ -32,21 +32,44 @@ export class LoginPage {
   }
 
   loadApp() {
-    this.navCtrl.push(TabsPage);
   }
 
-  checkToken() {
+  async checkToken() {
     this.submitted = true;
-    this.loginProvider.checkToken(this.token).then((response)=>{
-      console.log("response: ", response);
+
+    try {
+      await this.loginProvider.checkToken(this.token)
       this.tokenValid = true;
-    }).catch(()=>{
+    }
+    catch(e) { 
       this.tokenValid = false;
-    });
+    }
   }
 
-  createUserAndLogIn() {
+  async createUserAndLogIn() {
+    try {
+      await this.loginProvider.createYouth({
+        username: this.username,
+        password: this.password,
+        email: this.email,
+        token_id: this.token
+      });      
+      await this.login();      
+    } catch (e) {
+      //duplicate username or something
+    }    
+  }
 
+  async login() {
+    try {
+      await this.loginProvider.login({
+        username: this.username,
+        password: this.password
+      });
+      this.navCtrl.push(TabsPage);
+    } catch (e) {
+      //invalid credentials or something
+    }
   }
 
   get submitButtonColor(): string {
