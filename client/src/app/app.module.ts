@@ -26,6 +26,7 @@ import { Camera } from '@ionic-native/camera';
 import { LoginProvider } from '../providers/login/login';
 import { ContactProvider } from '../providers/contact/contact';
 import { EmailComposer } from '@ionic-native/email-composer'
+import { ResourceProvider } from '../providers/resource/resource';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { EmailComposer } from '@ionic-native/email-composer'
     LoginProvider,
     ContactProvider,
     Camera,
-    EmailComposer
+    EmailComposer,
+    ResourceProvider
   ]
 })
 export class AppModule {}
