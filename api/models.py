@@ -75,6 +75,9 @@ class AccountToken(models.Model):
         return newUser
 
 class Resource(models.Model):
+    def __str__(self):
+        return 'Resource: ' + self.name
+
     objects = models.Manager()
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=2560)
