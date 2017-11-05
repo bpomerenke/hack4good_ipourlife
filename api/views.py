@@ -87,8 +87,10 @@ def wishes(request, username=None):
             
         person = User.objects.get(username=username).person
         wishes = Wish.objects.filter(person=person)
-        
-        data = serializers.serialize("json", wishes)
+        serializable = [{
+            "name": wish.name
+            } for wish in wishes]
+        data = json.dumps(serializable)  
         return HttpResponse(data)
 
     elif request.method == "POST":
