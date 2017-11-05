@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ContactProvider } from '../../providers/contact/contact';
+import { Contact } from '../../models/Contact';
 
 @Component({
   selector: 'page-contact-new',
@@ -9,13 +11,11 @@ export class NewContactPage {
     @Output() contactCreated = new EventEmitter<any>();
     @Output() contactCancel = new EventEmitter<any>();
 
-    constructor(private camera: Camera) {
-        
-    }
+    constructor(private camera: Camera, private contactProvider: ContactProvider) {}
 
     newContactFirstName: string;
     newContactLastName: string;
-    newContactPhone: number;
+    newContactPhone: string;
     newContactPhoto: any;
 
     saveContact() {
@@ -24,18 +24,19 @@ export class NewContactPage {
           return;
         }
     
-        let newContact: Object = {
-          name: this.newContactFirstName + ' ' + this.newContactLastName,
-          number: this.newContactPhone,
-          img: this.newContactPhoto? this.newContactPhoto : '../assets/imgs/defaultimage.jpg'
-        }
-    
+        let newContact = new Contact();
+        newContact.name = this.newContactFirstName + ' ' + this.newContactLastName;
+        newContact.number = this.newContactPhone;
+        newContact.img = this.newContactPhoto? this.newContactPhoto : './assets/imgs/defaultimage.jpg';
+        
         this.newContactFirstName = null;
         this.newContactLastName = null;
         this.newContactPhone = null;
         this.newContactPhoto = null;
-    
-        this.contactCreated.emit(newContact);
+
+        this.contactProvider.createContact(newContact).then(() => {
+          this.contactCreated.emit(newContact); 
+        });        
       }
 
       cancelContact(){

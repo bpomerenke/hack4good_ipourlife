@@ -114,7 +114,7 @@ def contacts(request):
         body_unicode = request.body.decode('utf-8')
         data = json.loads(body_unicode)
 
-        contact = Contact(number=data["number"], name=data["name"])
+        contact = Contact(number=data["number"], name=data["name"], img=data["img"])
         contact.save()
         request.user.person.contacts.add(contact)
 
@@ -125,6 +125,13 @@ def contacts(request):
         contact.number = data["number"]
         contact.name = data["name"]
         contact.save()
-            
-    data = serializers.serialize("json", Contact.objects.filter(person=person))
+
+    contacts = Contact.objects.filter(person=person)
+    serializable = [{
+        "name": contact.name, 
+        "number": contact.number, 
+        "img": contact.img
+        } for contact in contacts]
+    data = json.dumps(serializable)
+
     return HttpResponse(data)
