@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^wishes$', views.wishes, name='wishes'),
     url(r'^wishes/(?P<username>\w+)', views.wishes, name='wishes'),
     url(r'^contacts$', views.contacts, name='contacts'),
+    url(r'^activities$', views.activities, name='activities'),
     url(r'^resources$', views.resources, name='resources')
 ]

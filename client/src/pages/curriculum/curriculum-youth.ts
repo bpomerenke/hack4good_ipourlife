@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Assignment } from '../../models/Assignment';
 
+import { ActivityProvider } from '../../providers/activity/activity'
+
 /**
  * Generated class for the CurriculumPage page.
  *
@@ -24,8 +26,13 @@ export class CurriculumYouthPage {
         new Module(3, "Employment Development", this.assignments3)
     ];
 
+    constructor(private activityProvider: ActivityProvider){
+
+    }
     ionViewDidLoad() {
-        console.log('ionViewDidLoad CurriculumPage');
+        this.activityProvider.getAll().then((activities)=>{
+
+        });
     }
 
     getModules(): any[] {

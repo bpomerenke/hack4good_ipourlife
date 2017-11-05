@@ -29,6 +29,7 @@ import { ContactProvider } from '../providers/contact/contact';
 import { EmailComposer } from '@ionic-native/email-composer'
 import { ResourceProvider } from '../providers/resource/resource';
 import { WishProvider } from '../providers/wish/wish';
+import { ActivityProvider } from '../providers/activity/activity';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { WishProvider } from '../providers/wish/wish';
     Camera,
     EmailComposer,
     ResourceProvider,
-    WishProvider
+    WishProvider,
+    ActivityProvider
   ]
 })
 export class AppModule {}
