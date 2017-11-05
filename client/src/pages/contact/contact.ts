@@ -47,4 +47,8 @@ export class ContactPage {
     this.isAddingContact = false;
     this.contacts.push($event);
   }
+
+  contactCancel(){
+    this.isAddingContact = false;
+  }
 }

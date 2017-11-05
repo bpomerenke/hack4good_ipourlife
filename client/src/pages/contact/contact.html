@@ -24,6 +24,6 @@
       </ion-item>
     </ion-list>
   </div>
-  <page-contact-new *ngIf="isAddingContact" (contactCreated)="contactCreated($event)"></page-contact-new>"
+  <page-contact-new *ngIf="isAddingContact" (contactCreated)="contactCreated($event)" (contactCancel)="contactCancel()"></page-contact-new>
 <!-- add contact screen-->
 </ion-content>

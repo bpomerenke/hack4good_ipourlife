@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
@@ -8,8 +7,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class NewContactPage {
     @Output() contactCreated = new EventEmitter<any>();
+    @Output() contactCancel = new EventEmitter<any>();
 
-    constructor(public navCtrl: NavController, private camera: Camera) {
+    constructor(private camera: Camera) {
         
     }
 
@@ -36,6 +36,10 @@ export class NewContactPage {
         this.newContactPhoto = null;
     
         this.contactCreated.emit(newContact);
+      }
+
+      cancelContact(){
+        this.contactCancel.emit();
       }
     
       uploadPhoto() {
