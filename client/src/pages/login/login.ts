@@ -40,6 +40,8 @@ export class LoginPage {
     this.loginProvider.checkToken(this.token).then((response)=>{
       console.log("response: ", response);
       this.tokenValid = true;
+    }).catch(()=>{
+      this.tokenValid = false;
     });
   }
 
