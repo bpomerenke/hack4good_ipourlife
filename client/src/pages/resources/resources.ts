@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @Component({
   selector: 'page-resources',
@@ -36,7 +36,7 @@ export class ResourcesPage {
     },
   ];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private emailComposer: EmailComposer) {
 
   }
 
@@ -44,7 +44,23 @@ export class ResourcesPage {
     return this.resources;
   }
 
-  call(contact: any) {
-    window.location.href = `tel:${contact.number}`;
+  call(resource: any) {
+    window.location.href = `tel:${resource.phone}`;
  }
+
+  email(resource: any) {
+    this.emailComposer.isAvailable().then((available: boolean) =>{
+      if(available) {
+        //Now we know we can send
+      }
+     });
+     
+     let email = {
+       to: '{resource.email}',
+       isHtml: true
+     };
+     
+     // Send a text message using default options
+     this.emailComposer.open(email);
+  }
 }

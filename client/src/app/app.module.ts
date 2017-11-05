@@ -25,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { LoginProvider } from '../providers/login/login';
 import { ContactProvider } from '../providers/contact/contact';
+import { EmailComposer } from '@ionic-native/email-composer'
 
 @NgModule({
   declarations: [
@@ -72,7 +73,9 @@ import { ContactProvider } from '../providers/contact/contact';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     LoginProvider,
-    ContactProvider
+    ContactProvider,
+    Camera,
+    EmailComposer
   ]
 })
 export class AppModule {}
