@@ -130,7 +130,7 @@ def contacts(request):
     serializable = [{
         "name": contact.name, 
         "number": contact.number, 
-        "img": contact.image
+        "img": contact.img
         } for contact in contacts]
     data = json.dumps(serializable)
 
