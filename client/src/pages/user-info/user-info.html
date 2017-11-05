@@ -32,7 +32,9 @@
       <ion-input type="text" [(ngModel)]="phone_number" name="phone_number"></ion-input>
     </ion-item>
     <button [disabled]="!canCreateInvite()" ion-button type="button" (click)="createToken()" block>Create Invite</button>
-    <h2 *ngIf="token_id != null">Token: {{token_id}}</h2>
+    <ion-item padding>
+      <h2 *ngIf="token_id != null">Token: {{token_id}}</h2>
+    </ion-item>
   </form>
 
 </ion-content>
