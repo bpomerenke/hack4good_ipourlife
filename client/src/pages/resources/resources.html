@@ -8,7 +8,7 @@
 <ion-content class="cards-bg">
 <ion-card *ngFor="let resource of getResources()">
   
-    <img class="resource-card" src="{{resource.img}}"/>
+    <img class="resource-card" src="{{resource.image}}"/>
   
     <ion-card-content>
       <ion-card-title>
@@ -21,23 +21,24 @@
   
     <ion-row no-padding>
       <ion-col>
-        <button ion-button clear small color="danger" icon-start>
+        <button ion-button clear small color="danger" icon-start (click)="call(resource)">
           <ion-icon name='call'></ion-icon>
           Call
         </button>
       </ion-col>
       <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start>
+        <button ion-button clear small color="danger" icon-start (click)="email(resource)">
           <ion-icon name='mail'></ion-icon>
           Email
         </button>
       </ion-col>
-      <ion-col text-right>
+      <!-- consider adding this later, skipping implementation for now -->
+      <!-- <ion-col text-right>
         <button ion-button clear small color="danger" icon-start>
           <ion-icon name='pin'></ion-icon>
           Location
         </button>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   
   </ion-card>
