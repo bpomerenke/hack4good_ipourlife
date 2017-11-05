@@ -14,6 +14,38 @@
 
 
 <ion-content padding>
-  Username: <input type="text"/>
-  <button ionic-button (click)="loadApp()">Login</button>
+  <ion-segment [(ngModel)]="loginType" color="primary">
+    <ion-segment-button value="existing">
+      <ion-icon name="log-in"></ion-icon>
+      Existing User
+    </ion-segment-button>
+    <ion-segment-button value="new">      
+      <ion-icon name="person-add"></ion-icon>
+      New User
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="loginType == 'existing'">
+    <form (ngSubmit)="login()">
+      <ion-item padding>
+        <ion-label>Username:</ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+      </ion-item>
+      <ion-item padding>
+        <ion-label>Password:</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" block>Log In</button>
+    </form>
+  </div>
+
+  <div *ngIf="loginType == 'new'">
+    <form (ngSubmit)="checkToken()">
+      <ion-item padding>
+        <ion-label>Token:</ion-label>
+        <ion-input type="text" [(ngModel)]="token" name="token"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" block>Continue</button>
+    </form>
+  </div>
 </ion-content>

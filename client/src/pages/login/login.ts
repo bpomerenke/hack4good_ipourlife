@@ -14,8 +14,13 @@ import { TabsPage } from '../tabs/tabs'
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  loginType: string = "existing";
+  username: string = "";
+  password: string = "";
+  token: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log("constructor login")
   }
 
   ionViewDidLoad() {
@@ -24,5 +29,9 @@ export class LoginPage {
 
   loadApp(){
     this.navCtrl.push(TabsPage);
+  }
+
+  checkToken() {
+
   }
 }
